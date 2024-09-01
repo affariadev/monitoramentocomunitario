@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Sensores</title>
+    <script>
+        function fetchData() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('r').innerText = data.r;
+                    document.getElementById('g').innerText = data.g;
+                    document.getElementById('b').innerText = data.b;
+                    document.getElementById('c').innerText = data.c;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        setInterval(fetchData, 1000);  // Atualiza os dados a cada 1 segundo
+    </script>
+</head>
+<body>
+    <h1>Dados do Sensor</h1>
+    <p>R: <span id="r">0</span></p>
+    <p>G: <span id="g">0</span></p>
+    <p>B: <span id="b">0</span></p>
+    <p>C: <span id="c">0</span></p>
+</body>
+</html>
